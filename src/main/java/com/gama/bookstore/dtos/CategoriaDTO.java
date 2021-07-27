@@ -1,19 +1,27 @@
 package com.gama.bookstore.dtos;
 
-public class CategoriaDTO {
+import java.io.Serializable;
+
+import com.gama.bookstore.domain.Categoria;
+
+public class CategoriaDTO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String nome;
 	private String descricao;
+	
+	
 	public CategoriaDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CategoriaDTO(Integer id, String nome, String descricao) {
+	public CategoriaDTO(Categoria obj) {
 		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.descricao = obj.getDescricao();
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.gama.bookstore.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado!: " + id + ", Tipo: " + Categoria.class.getName()));
 
+	}
+	
+	public List<Categoria> findAll(){
+		return repository.findAll();
 	}
 
 }
