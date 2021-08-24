@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.gama.bookstore.domain.Categoria;
 import com.gama.bookstore.dtos.CategoriaDTO;
 import com.gama.bookstore.repositories.CategoriaRepository;
+import com.gama.bookstore.services.exceptions.DataIntegrityViolationException;
 import com.gama.bookstore.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -24,11 +25,11 @@ public class CategoriaService {
 				"Objeto não encontrado!: " + id + ", Tipo: " + Categoria.class.getName()));
 
 	}
-	
-	public List<Categoria> findAll(){
+
+	public List<Categoria> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Categoria create(Categoria obj) {
 		obj.setId(null);
 		return repository.save(obj);
@@ -43,8 +44,14 @@ public class CategoriaService {
 
 	public void delete(Integer id) {
 		findById(id);
-		repository.deleteById(id);
-		
+		try {
+
+			repository.deleteById(id);
+
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Categoria não pode ser deletado! Possui livros associados!");
+		}
+
 	}
 
 }
