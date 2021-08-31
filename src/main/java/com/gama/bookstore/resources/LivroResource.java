@@ -41,6 +41,7 @@ public class LivroResource {
 		return ResponseEntity.ok().body(listDTO);
 		
 	}
+	
 	//Metodo serve para atualizar toda atualização
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj){
@@ -56,6 +57,8 @@ public class LivroResource {
 		return ResponseEntity.ok().body(newObj);
 		
 	}
+	
+	
 	
 	
 
