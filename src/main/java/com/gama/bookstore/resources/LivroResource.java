@@ -23,7 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.gama.bookstore.domain.Livro;
 import com.gama.bookstore.dtos.LivroDTO;
 import com.gama.bookstore.services.LivroService;
-import com.sun.org.apache.xerces.internal.util.URI;
+
 
 
 //O endpoint /livros pode receber requisiçoes de outras fontes
@@ -70,7 +70,9 @@ public class LivroResource {
 	@PostMapping
 	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat, @Valid @RequestBody Livro obj){
 		Livro newObj = service.create(id_cat, obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri();
+		//URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri(); desfazer o comentario depois do heroku
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 	@DeleteMapping(value = "/{id}")
