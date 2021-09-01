@@ -52,7 +52,7 @@ public class LivroResource {
 		
 	}
 	
-	//Metodo serve para atualizar toda atualização
+	//Metodo serve para atualizar toda Informação, o @valid é p validar as anotações inseridas no models
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Livro> update(@Valid @PathVariable Integer id, @Valid @RequestBody Livro obj){
 		Livro newObj = service.update(id, obj);
@@ -60,7 +60,7 @@ public class LivroResource {
 		
 	}
 	
-	//Metodo serve para atualizar parte da informação
+	//Metodo serve para atualizar parte da informação, o @valid é p validar as anotações inseridas no models
 	@PatchMapping(value = "/{id}")
 	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @Valid @RequestBody Livro obj){
 		Livro newObj = service.update(id, obj);
@@ -78,8 +78,9 @@ public class LivroResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 		
-		
 	}
+	
+	
 	
 	
 
